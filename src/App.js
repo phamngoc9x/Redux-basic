@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import logo from './logo.svg';
 import './App.css';
+import New from './New';
+import {connect} from 'react-redux';
 
 class App extends Component {
   render() {
@@ -8,21 +10,17 @@ class App extends Component {
       <div className="App">
         <header className="App-header">
           <img src={logo} className="App-logo" alt="logo" />
-          <p>
-            Edit <code>src/App.js</code> and save to reload.
-          </p>
-          <a
-            className="App-link"
-            href="https://reactjs.org"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Learn React
-          </a>
+          <h3>Du lieu lay ra trong store</h3>
+          {this.props.dl}
         </header>
+        <New/>
       </div>
     );
   }
 }
-
-export default App;
+const mapStateToProps = (state, ownProps) => {
+  return {
+    dl: state.num
+  }
+}
+export default connect(mapStateToProps)(App);
