@@ -1,29 +1,27 @@
+import numReducer from './reducers/numReducer';
+import editStatusReducer from './reducers/editStatusReducer';
+
 var redux = require('redux');
-var oldState ={
-  num : ["man hinh", "chuot", "ban phim"],
-  editStatus: true
-}
 
+const allReducers = redux.combineReducers({
+  num: numReducer,
+  editStatus: editStatusReducer
+})
 
-const reducer1 = (state = oldState, action) => {
-  switch (action.type) {
-    case "EDIT_STATUS":
-      return {...state, editStatus: ! state.editStatus}
-
-    case "ADD_NEW":
-      return {...state, num:[...state.num, action.newItem]}
-
-    case "DELETE":
-      return {...state, num:state.num.filter((value,i) => i!== action.number)}
-    default:
-      return state
-  }
-}
-var store1 = redux.createStore(reducer1);
+var store1 = redux.createStore(allReducers);
 store1.subscribe(() => {
   console.log(JSON.stringify(store1.getState()));
 })
+
 store1.dispatch({
-  type: "EDIT_STATUS"
+  type: "ADD_NEW",
+  newItem: 'Loa vi tinh'
+})
+store1.dispatch({
+  type: "EDIT_STATUS",
+})
+store1.dispatch({
+  type: "DELETE",
+  number: 1
 })
 export default store1;

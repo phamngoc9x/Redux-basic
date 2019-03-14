@@ -10,10 +10,9 @@ class App extends Component {
       <div className="App">
         <header className="App-header">
           <img src={logo} className="App-logo" alt="logo" />
-          <h3>Du lieu lay ra trong store</h3>
-          {this.props.dl}
+          <New/>
         </header>
-        <New/>
+        
       </div>
     );
   }
